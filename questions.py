@@ -1,22 +1,35 @@
 import random
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
-]
 
-word = random.choice(words)
+words = {
+    "general" : ["programa"],
+    "programacion" : ["python","variable","funcion","bucle"],           #Genero el nuevo diccionario con las nuevas categorías.
+    "tipos" : ["cadena","entero","lista"]
+}
+
 guessed = []
 attempts = 6
 puntaje = 0         #Inicializo la variable del puntaje.
 
 print("¡Bienvenido al Ahorcado!")
 print()
+
+categoria_elegida = ""
+while categoria_elegida not in words:
+    print ("Categorias disponibles:")
+    
+    for categoria in words:
+        print("-", categoria)                                                           #Ofrezo las opciones de categorías al usuario.
+    categoria_elegida = input("Elegi una categoria de las brindadas: ").lower()         #La persona elige la categoria del juego.
+    
+    if categoria_elegida not in words:
+        print("La categoría ingresada no existe. Intentá nuevamente")
+        print()
+        
+print(f"Se jugará con la categoría de palabras '{categoria_elegida}'")
+print()
+
+word = random.choice(words[categoria_elegida])                                          #Elige una palabra al azar de la categoría elegida.
+
 
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
